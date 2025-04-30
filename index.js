@@ -11,7 +11,10 @@ const errorMiddleware = require('./src/middlewares/error.middleware.js');
 const app = express();
 
 app.use(cors({
-  origin: 'https://fe-rest-countries.vercel.app', 
+  origin: 'https://fe-rest-countries.vercel.app', // Allow your frontend domain
+  credentials: true, // Allow cookies (if used for auth)
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allow specific HTTP methods
+  allowedHeaders: ['Content-Type', 'Authorization'] // Allow specific headers
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
