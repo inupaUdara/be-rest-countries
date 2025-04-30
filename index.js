@@ -1,5 +1,5 @@
 const express = require('express');
-const serverless = require('serverless-http');
+// const serverless = require('serverless-http');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const { PORT } = require('./src/config/env.js');
@@ -46,9 +46,11 @@ app.get('/api/test', (req, res) => res.json({ message: 'Server is running' }));
 })();
 
 // Export for Vercel serverless
-module.exports = serverless(app);
+// module.exports = serverless(app);
 
 // Local server for development
 app.listen(PORT || 5001, () => {
   console.log(`Server is running on port ${PORT || 5001}`);
 });
+
+module.exports = app;
