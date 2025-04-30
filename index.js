@@ -30,9 +30,6 @@ connectToDatabase().catch((err) => console.error('MongoDB connection failed:', e
 // Export for Vercel serverless
 module.exports.handler = serverless(app);
 
-// Optional: Local server for development
-if (process.env.NODE_ENV !== 'production') {
-    app.listen(PORT || 5000, () => {
-        console.log(`Server is running on port ${PORT || 5000}`);
-    });
-}
+app.listen(PORT || 5000, () => {
+  console.log(`Server is running on port ${PORT || 5000}`);
+});
