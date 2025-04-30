@@ -19,7 +19,7 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-// Log requests
+// Log requests for debugging
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.url}`);
   next();
@@ -36,15 +36,19 @@ app.use(errorMiddleware);
 // Test route to confirm server is running
 app.get('/api/test', (req, res) => res.json({ message: 'Server is running' }));
 
-// Connect to MongoDB without crashing
-connectToDatabase()
-  .then(() => console.log('MongoDB connection established'))
-  .catch((err) => console.error('Failed to connect to MongoDB:', err.message));
+// Connect to MongoDB without blocking
+(async () => {
+  try {
+    await connectToDatabase();
+  } catch (err) {
+    console.error('Failed to connect to MongoDB during startup:', err.message);
+  }
+})();
 
-// Export for Vercel serverless (use default export)
+// Export for Vercel serverless
 module.exports = serverless(app);
 
-// Local server (for development only)
-app.listen(PORT || 5000, () => {
-  console.log(`Server is running on port ${PORT || 5000}`);
+// Local server for development
+app.listen(PORT || 5001, () => {
+  console.log(`Server is running on port ${PORT || 5001}`);
 });
