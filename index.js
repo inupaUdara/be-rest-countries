@@ -11,7 +11,7 @@ const errorMiddleware = require('./src/middlewares/error.middleware.js');
 const app = express();
 
 app.use(cors({
-  origin: 'https://fe-rest-countries.vercel.app/', 
+  origin: 'https://fe-rest-countries.vercel.app', 
   credentials: true
 }));
 app.use(express.json());
