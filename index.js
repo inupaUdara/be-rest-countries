@@ -12,7 +12,7 @@ const app = express();
 
 // Configure CORS
 const corsOptions = {
-  origin: 'https://fe-rest-countries.vercel.app',
+  origin: true,
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
